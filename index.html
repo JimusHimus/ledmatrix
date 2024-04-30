@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet'
+        type='text/css'>
+    <title>8x8 Matrix Calculator for LEDs or other stuff</title>
+    <style>
+        body {
+            background: url(bg.png) repeat #fff;
+            font-size: 12pt;
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
+
+        #content {
+            background-color: #fff;
+            width: 500px;
+            margin: 50px auto;
+            border: 3px solid #141414;
+            -webkit-border-radius: 15px 15px 15px 15px;
+            -moz-border-radius: 15px 15px 15px 15px;
+            border-radius: 15px 15px 15px 15px;
+            padding: 20px;
+        }
+
+        #content h1 {
+            font-size: 30pt;
+            font-weight: 800;
+            margin: 5px 0;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id=content>
+        <h1>8x8 Led Matrix Value Calculator</h1>
+        This is my little helper tool for calculating patterns for a LED Matrix for Arduino or 8052 progs.
+        You can draw your pattern by clicking on tiles, you even can input an existing array to the tool by inserting 8
+        values , comma separated into the input field.<br><br>
+        Have fun ! Feel free to use.
+        <br><br>
+        <form name="pixCalc">
+            <table cellspacing="0" cellpadding="0" class="width-50">
+                <tbody>
+                    <tr>
+                        <td class="forumheader" style="text-align: center" colspan="3"><b></b></td>
+                    </tr>
+                    <tr>
+                        <td class="width-80" style="text-align: center; min-width: 200px;">Bitmap</td>
+                        <td class="width-10" style="text-align: center">Decimal</td>
+                        <td class="width-10" style="text-align: center">Hex</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p07&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p07"></a><a
+                                href="javascript: togImage(&quot;p06&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p06"></a><a href="javascript: togImage(&quot;p05&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p05"></a><a
+                                href="javascript: togImage(&quot;p04&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p04"></a><a href="javascript: togImage(&quot;p03&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p03"></a><a
+                                href="javascript: togImage(&quot;p02&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p02"></a><a href="javascript: togImage(&quot;p01&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p01"></a><a
+                                href="javascript: togImage(&quot;p00&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p00"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row0"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row01"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p17&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p17"></a><a
+                                href="javascript: togImage(&quot;p16&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p16"></a><a href="javascript: togImage(&quot;p15&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p15"></a><a
+                                href="javascript: togImage(&quot;p14&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p14"></a><a href="javascript: togImage(&quot;p13&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p13"></a><a
+                                href="javascript: togImage(&quot;p12&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p12"></a><a href="javascript: togImage(&quot;p11&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p11"></a><a
+                                href="javascript: togImage(&quot;p10&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p10"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row1"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row11"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p27&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p27"></a><a
+                                href="javascript: togImage(&quot;p26&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p26"></a><a href="javascript: togImage(&quot;p25&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p25"></a><a
+                                href="javascript: togImage(&quot;p24&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p24"></a><a href="javascript: togImage(&quot;p23&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p23"></a><a
+                                href="javascript: togImage(&quot;p22&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p22"></a><a href="javascript: togImage(&quot;p21&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p21"></a><a
+                                href="javascript: togImage(&quot;p20&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p20"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row2"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row21"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p37&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p37"></a><a
+                                href="javascript: togImage(&quot;p36&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p36"></a><a href="javascript: togImage(&quot;p35&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p35"></a><a
+                                href="javascript: togImage(&quot;p34&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p34"></a><a href="javascript: togImage(&quot;p33&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p33"></a><a
+                                href="javascript: togImage(&quot;p32&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p32"></a><a href="javascript: togImage(&quot;p31&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p31"></a><a
+                                href="javascript: togImage(&quot;p30&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p30"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row3"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row31"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center">
+
+
+                            <a href="javascript: togImage(&quot;p47&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p47"></a><a href="javascript: togImage(&quot;p46&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p46"></a><a
+                                href="javascript: togImage(&quot;p45&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p45"></a><a href="javascript: togImage(&quot;p44&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p44"></a><a
+                                href="javascript: togImage(&quot;p43&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p43"></a><a href="javascript: togImage(&quot;p42&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p42"></a><a
+                                href="javascript: togImage(&quot;p41&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p41"></a><a href="javascript: togImage(&quot;p40&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p40"></a>
+                        </td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row4"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row41"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p57&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p57"></a><a
+                                href="javascript: togImage(&quot;p56&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p56"></a><a href="javascript: togImage(&quot;p55&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p55"></a><a
+                                href="javascript: togImage(&quot;p54&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p54"></a><a href="javascript: togImage(&quot;p53&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p53"></a><a
+                                href="javascript: togImage(&quot;p52&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p52"></a><a href="javascript: togImage(&quot;p51&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p51"></a><a
+                                href="javascript: togImage(&quot;p50&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p50"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row5"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row51"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p67&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p67"></a><a
+                                href="javascript: togImage(&quot;p66&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p66"></a><a href="javascript: togImage(&quot;p65&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p65"></a><a
+                                href="javascript: togImage(&quot;p64&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p64"></a><a href="javascript: togImage(&quot;p63&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p63"></a><a
+                                href="javascript: togImage(&quot;p62&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p62"></a><a href="javascript: togImage(&quot;p61&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p61"></a><a
+                                href="javascript: togImage(&quot;p60&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p60"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row6"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row61"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center"><a href="javascript: togImage(&quot;p77&quot;)"><img width="25"
+                                    height="25" border="0" src="pixel0.gif" name="p77"></a><a
+                                href="javascript: togImage(&quot;p76&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p76"></a><a href="javascript: togImage(&quot;p75&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p75"></a><a
+                                href="javascript: togImage(&quot;p74&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p74"></a><a href="javascript: togImage(&quot;p73&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p73"></a><a
+                                href="javascript: togImage(&quot;p72&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p72"></a><a href="javascript: togImage(&quot;p71&quot;)"><img
+                                    width="25" height="25" border="0" src="pixel0.gif" name="p71"></a><a
+                                href="javascript: togImage(&quot;p70&quot;)"><img width="25" height="25" border="0"
+                                    src="pixel0.gif" name="p70"></a></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row7"
+                                class="no-margin no-padding"></td>
+                        <td style="text-align: center"><input type="text" readonly="" value="0" size="5" name="row71"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; border-top:1px solid #141414;padding:5px;" colspan="3">
+                            List of bitmap values:<br>
+                            Dec: <input style="width:300px;" type="text" readonly="" value="0, 0, 0, 0, 0, 0, 0, 0"
+                                name="dataList" class="no-margin no-padding"><br>
+                            Hex: <input style="width:300px;" type="text" readonly=""
+                                value="0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00" name="dataList1"
+                                class="no-margin no-padding"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; border-top:1px solid #141414;" colspan="3"><br>
+                            <input type="button" onclick="clearit()" value=" Clear Bitmap " name="clear"
+                                class="button">&nbsp;&nbsp;
+                            <input type="button" onclick="invert()" value=" Negative " name="negative" class="button">
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center" colspan="3"><br>Input Array (hex/dec):<br>
+
+                            Array: <input style="width:300px;" type="text" value="223, 183, 99, 247, 231, 215, 217, 157"
+                                name="inputHexStr" class="no-margin no-padding">
+                            <br><br><input type="button" onclick="insertHexStr()" value=" Insert " name="negative"
+                                class="button">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center" colspan="3"><br>Shift:<br>
+                            <input style="width:40px;" type="button" value="UP" name="shiftUp"
+                                class="no-margin no-padding" onclick="doshiftUp()">
+                            <br><input style="width:60px;" type="button" value="x° L" name="turnLeft"
+                                class="no-margin no-padding" onclick="doTurnX(0)">
+                            <input style="width:60px;" type="button" value="90° L" name="turnLeft"
+                                class="no-margin no-padding" onclick="doTurn(90)">
+                            <input style="width:40px;" type="button" value="LE" name="shiftLeft"
+                                class="no-margin no-padding" onclick="doshiftLeft()">&nbsp;&nbsp;&nbsp;<input
+                                style="width:40px;" type="button" value="RI" name="shiftRight"
+                                class="no-margin no-padding" onclick="doshiftRight()">
+                            <input style="width:60px;" type="button" value="90° R" name="turnLeft"
+                                class="no-margin no-padding" onclick="doTurn(-90)">
+                            <input style="width:60px;" type="button" value="x° R" name="turnLeft"
+                                class="no-margin no-padding" onclick="doTurnX(1)"><br>
+                            <input style="width:40px;" type="button" value="DO" name="shiftDown"
+                                class="no-margin no-padding" onclick="doshiftDown()">
+                            <br><br>
+                            Rotation Center (x,y)<input style="width:300px;" type="text" value="3.5,3.5"
+                                name="inputRotCent" class="no-margin no-padding"><br>
+                            Angle x°:<input style="width:60px;" type="text" value="180" name="inputAngle"
+                                class="no-margin no-padding">
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        bitMaps = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+        //bitMapsT = new Array(0,0,0,0,0,0,0,0);
+
+
+
+        function doTurnX(y) {
+            var angle = parseInt(document.pixCalc.inputAngle.value);
+            if (y == 1) { doTurn(angle * -1); } else { doTurn(angle) };
+        }
+
+        function doTurn(angle) {
+            var x = document.pixCalc.inputRotCent;
+            var r = x.value.split(",");
+            var bitMapsTemp = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+            var i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            for (rown = 0; rown < 8; ++rown) {
+                for (col = 0; col < 8; ++col) {
+                    var mask = 1 << col;
+                    if ((arr_i[rown] & mask) != 0) { //wenn pixel gesetzt
+                        var Pixel = rotate(parseFloat(r[0]), parseFloat(r[1]), rown, col, angle);
+                        var nx = Math.round(Pixel[0]);
+                        var ny = Math.round(Pixel[1]);
+                        bitMapsTemp[nx] = bitMapsTemp[nx] + Math.pow(2, ny);
+                    }
+                }
+            }
+            clearit();
+            document.pixCalc.dataList1.value = bitMapsTemp;
+            updateMap();
+        }
+
+        function rotate(cx, cy, x, y, angle) {
+            var radians = (Math.PI / 180) * angle,
+                cos = Math.cos(radians),
+                sin = Math.sin(radians),
+                nx = (cos * (x - cx)) - (sin * (y - cy)) + cx,
+                ny = (sin * (x - cx)) + (cos * (y - cy)) + cy;
+            return [nx, ny];
+        } //cx,cy = center of rotation, x.y =coords , 
+
+        /*
+        var newPoint = rotate(0, 0, 6, 1, 40),
+        newX = newPoint[0],
+        newY = newPoint[1];*/
+
+        //newX and newY are both floating point decimals, and you can convert them to integers using Math.round(), Math.ceil(), or Math.floor() as needed.
+
+        function doshiftRight() {
+            i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            for (a = 0; a < 8; a++) {
+                arr_i[a] = (arr_i[a] >> 1) | (arr_i[a] << (8 - 1));
+            }
+            clearit();
+            document.pixCalc.dataList1.value = arr_i;
+            updateMap();
+        }
+
+        function doshiftLeft() {
+            i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            for (a = 0; a < 8; a++) {
+                arr_i[a] = (arr_i[a] << 1) | (arr_i[a] >> (8 - 1));
+            }
+            clearit();
+            document.pixCalc.dataList1.value = arr_i;
+            updateMap();
+        }
+
+        function doshiftUp() {
+            i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            var t_ArrV = arr_i.shift();
+            arr_i[7] = t_ArrV;
+            clearit();
+            document.pixCalc.dataList1.value = arr_i;
+            updateMap();
+        }
+
+        function doshiftDown() {
+            i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            var t_ArrV = arr_i.pop();
+            for (var x = 6; x >= 0; x--) {
+                arr_i[x + 1] = arr_i[x];
+            }
+            arr_i[0] = t_ArrV;
+            clearit();
+            document.pixCalc.dataList1.value = arr_i;
+            updateMap();
+        }
+
+
+        function insertHexStr() {
+            clearit();
+            i = document.pixCalc.inputHexStr;
+            document.pixCalc.dataList1.value = i.value;
+            updateMap();
+        }
+
+        function updateMap() {
+            i = document.pixCalc.dataList1;
+            var arr_i = i.value.split(",");
+            for (rown = 0; rown < 8; ++rown) {
+                for (col = 0; col < 8; ++col) {
+                    var mask = 1 << col;
+                    if ((arr_i[rown] & mask) != 0) {
+                        imgName = 'p' + rown + col
+                        togImage(imgName);
+                    }
+                }
+            }
+        }
+
+
+
+        function upDateList() {
+            with (document.pixCalc) {
+                dataList.value = row0.value + ', ' + row1.value + ', ' + row2.value + ', ' + row3.value + ', ' + row4.value + ', ' + row5.value + ', ' + row6.value + ', ' + row7.value
+                dataList1.value = row01.value + ', ' + row11.value + ', ' + row21.value + ', ' + row31.value + ', ' + row41.value + ', ' + row51.value + ', ' + row61.value + ', ' + row71.value
+            }
+        }
+
+
+
+
+        function togImage(imgName) {
+            var bitMask = 1 << parseInt(imgName.charAt(2))
+            var n = imgName.charAt(1)
+            var pixelChange = 'document.pixCalc.row' + n + '.value = bitMaps[n]'
+            var pixelChange1 = 'document.pixCalc.row' + n + '1.value = "0x"+bitMaps[n].toString(16)'
+            var pixState = document[imgName].src.charAt((document[imgName].src.length) - 5)
+            if (pixState == '0') {
+                document[imgName].src = 'pixel1.gif'
+                bitMaps[n] = bitMaps[n] | bitMask
+                eval(pixelChange)
+                eval(pixelChange1)
+                upDateList()
+            }
+            else {
+                document[imgName].src = 'pixel0.gif'
+                bitMask = bitMask ^ 0xFF
+                bitMaps[n] = bitMaps[n] & bitMask
+                eval(pixelChange)
+                eval(pixelChange1)
+                upDateList()
+            }
+        }
+        function invert() {
+            for (rown = 0; rown < 8; ++rown) {
+                for (col = 0; col < 8; ++col) {
+                    imgName = 'p' + rown + col
+                    togImage(imgName)
+                }
+            }
+        }
+
+        function clearit() {
+            for (rown = 0; rown < 8; ++rown)
+                for (col = 0; col < 8; ++col) {
+                    {
+                        imgName = 'p' + rown + col
+                        var bitMask = 1 << parseInt(imgName.charAt(2))
+                        var n = imgName.charAt(1)
+                        var pixelChange = "document.pixCalc.row" + n + ".value = bitMaps[n]"
+                        var pixelChange1 = 'document.pixCalc.row' + n + '1.value = "0x"+bitMaps[n].toString(16)'
+                        document[imgName].src = 'pixel0.gif'
+                        bitMask = bitMask ^ 0xFF
+                        bitMaps[n] = bitMaps[n] & bitMask
+                        eval(pixelChange)
+                        eval(pixelChange1)
+                        upDateList()
+                    }
+                }
+        }
+    </script>
+</body>
+
+</html>
