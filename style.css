@@ -1,0 +1,43 @@
+body {
+    background: url(bg.png) repeat #fff;
+    font-size: 12pt;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#content {
+    background-color: #fff;
+    width: 500px;
+    margin: 50px auto;
+    border: 3px solid #141414;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+    padding: 20px;
+}
+
+#content h1 {
+    font-size: 30pt;
+    font-weight: 800;
+    margin: 5px 0;
+    padding: 5px 0;
+}
+
+#bitmap {
+    border-spacing: 1px;
+    /*border-spacing: 0;*/
+    /*border-color: black;*/
+    padding: 0;
+    user-select: none;
+}
+
+.item {
+    width: 25px;
+    height: 25px;
+    background-color: aqua;
+    /*color: aqua;*/
+    padding: 0;
+}
+
+.selected {
+    background-color: red;
+}
